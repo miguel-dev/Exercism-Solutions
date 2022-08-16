@@ -18,10 +18,6 @@ export const cost = (books) => {
     return numberBooks * PRICE_PER_BOOK;
   }
 
-  console.log(createGroups(books));
-  console.log(costGroups(createGroups(books)));
-  console.log(balanceGroups(createGroups(books)));
-
   return costGroups(balanceGroups(createGroups(books)));
 };
 
@@ -41,13 +37,7 @@ const createGroups = (books) => {
   const numBooks = countBooks(books);
   const groups = [];
 
-  let numGroups = 0;
-  for (let book in numBooks) {
-    let numberOfBook = numBooks[book];
-    if (numberOfBook > numGroups) {
-      numGroups = numberOfBook;
-    }
-  }
+  let numGroups = Math.max(...Object.values(numBooks));
 
   while (numGroups > 0) {
     groups.push([]);
